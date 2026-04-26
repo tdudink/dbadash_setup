@@ -3,6 +3,7 @@ DbaDash_SQLSecurity.sql
 
 Modification History:
 ---------------------
+2026-04-26  tdu  $(ComputerName)\svc_dbadash is now the default monitoring account for DbaDash.  Updated script to create login and grant permissions to this account.
 2026-04-25  tdu  use .\svc_dbadash as default monitoring account
 2024-12-21  tino/opt  reated script with initial content
 */
@@ -13,7 +14,7 @@ GO
 
 declare @sSQLCMD nvarchar(4000);
 declare @sSQLLogin sysname;
-SET @sSQLLogin  = '.\svc_dbadash';
+SET @sSQLLogin  = '$(COMPUTERNAME)\svc_dbadash';
  
 if not exists (select [name] from syslogins where [name] = @sSQLLogin)
 begin
